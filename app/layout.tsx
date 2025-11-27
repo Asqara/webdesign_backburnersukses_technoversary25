@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 // @ts-ignore: Cannot find module or type declarations for side-effect import of './globals.css'.
 import "./globals.css";
+import Navbar from "@/components/partials/Navbar";
+import Footer from "@/components/partials/Footer";
+import { ToggleProvider, useToggle } from "@/context/ToggleContext";
+import LoginModalWrapper from "@/components/ui/LoginModalWrapper";
 
 export const metadata: Metadata = {
   title: "Rimba Kembali",
@@ -14,7 +18,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`font-poppins`}>{children}</body>
+      <body
+        className={`font-poppins bg-linear-to-b from-primary-50 to-primary-200`}
+      >
+        <ToggleProvider>
+          <Navbar />
+          {children}
+          <LoginModalWrapper />
+          <Footer logoSrc="/main-logo.svg" />
+        </ToggleProvider>
+      </body>
     </html>
   );
 }

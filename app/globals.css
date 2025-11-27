@@ -50,4 +50,20 @@
 
 @theme {
   --font-poppins: "Poppins", sans-serif;
+  --color-primary-500: #4d873d;
+  --color-primary-400: #5a9b45;
+  --color-primary-300: #cdf4ae;
+  --color-primary-200: #fff3b7;
+  --color-primary-50: #ffffff;
 }
+/* animation: {
+        'spin-slow': 'spin 2s linear infinite',
+        'ping-slow': 'ping 1.5s ease-in-out infinite',
+      },
+@keyframes {
+  ping:{
+    '75%, 100%': {
+            transform: 'scale(2)',
+            opacity: '0',
+  }
+} */
