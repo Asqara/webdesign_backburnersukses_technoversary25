@@ -3,11 +3,8 @@
 ## 👥 Nama Anggota & Asal Instansi
 | No | Nama Lengkap | Asal Instansi |
 |----|-------------|---------------|
-| 1  | (Isi Nama Anggota 1) | (Isi Instansi) |
-| 2  | (Isi Nama Anggota 2) | (Isi Instansi) |
-| 3  | (Isi Nama Anggota 3) | (Isi Instansi) |
-
-> Tambahkan atau kurangi anggota sesuai kebutuhan tim.
+| 1  | Alfath Asqar Tsani | IPB University |
+| 2  | Nailah Afia Tsabita | IPB University |
 
 ---
 
@@ -49,39 +46,38 @@ Cek versi Node:
 ```bash
 node -v
 npm -v
+```
 2️⃣ Clone Repository
 bash
 Copy code
+```bash
 git clone https://github.com/username/rimba-kembali.git
+```
 cd rimba-kembali
 Ganti username dengan username GitHub Anda.
 
 3️⃣ Install Dependencies
-bash
 Copy code
+```bash
 npm install
+```
 4️⃣ Menjalankan Project (Development Mode)
 bash
 Copy code
+```bash
 npm run dev
+```
 Akses di browser:
-
-arduino
 Copy code
+```bash
 http://localhost:3000
+```
 5️⃣ Build untuk Production
-bash
 Copy code
+```bash
 npm run build
-Menjalankan hasil build:
+```
 
-bash
-Copy code
-npm run start
-6️⃣ Menjalankan Linting (Opsional)
-bash
-Copy code
-npm run lint
 📁 Struktur Script penting
 json
 Copy code
@@ -92,17 +88,14 @@ Copy code
   "lint": "eslint"
 }
 🔗 Link Hosting / Demo (Opsional)
-🌐 Website: https://rimba-kembali.vercel.app
+🌐 Website: 
+```bash
+https://rimba-kembali.vercel.app
+```
 
 📦 Repository GitHub: https://github.com/username/rimba-kembali
 
 Jika belum tersedia, bagian ini dapat dikosongkan.
-
-📌 Catatan Tambahan
-Gunakan file .env.local untuk environment variable (jika ada).
-
-Jangan melakukan commit terhadap file .env.
-
 Disarankan untuk menggunakan Vercel untuk deployment Next.js.
 
 © 2025 — Rimba Kembali.
