@@ -2,7 +2,11 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import { useToast } from "@/context/ToastProvider";
+import { useVolunteer } from "@/hooks/useVolunteer";
+import { useAuth } from "@/context/AuthContext";
+import { useToggle } from "@/context/ToggleContext";
+import { useState, useMemo } from "react";
 
 export type DetailActivities = {
   theme: string;
@@ -156,23 +160,89 @@ export default function VolunteerHero({ data }: { data: VolunteerItem }) {
     ? formatDateShort(data.batasRegistrasi)
     : null;
 
+  const { user } = useAuth();
+  const { openModal } = useToggle();
+  const toast = useToast();
+
+  const { myRegistrations, registerToVolunteer } = useVolunteer();
+
+  // Local state to prevent multi-click while registering
+  const [registering, setRegistering] = useState(false);
+
+  // apakah user sudah terdaftar pada volunteer ini?
+  const isRegistered = useMemo(() => {
+    if (!myRegistrations || myRegistrations.length === 0) return false;
+    return myRegistrations.some(
+      (r) => String(r.volunteer_id) === String(data.id)
+    );
+  }, [myRegistrations, data.id]);
+
+  // apakah batas registrasi sudah lewat?
+  const registrationClosed = useMemo(() => {
+    if (!data.batasRegistrasi) return false;
+    return new Date() > new Date(data.batasRegistrasi);
+  }, [data.batasRegistrasi]);
+
+  const handleRegisterClick = async () => {
+    // jika belum login -> munculkan modal login/register
+    if (!user) {
+      toast.info(
+        "Silakan masuk terlebih dahulu untuk mendaftar sebagai relawan.",
+        "Butuh Login"
+      );
+      openModal("login");
+      return;
+    }
+
+    if (isRegistered) {
+      toast.info("Kamu sudah terdaftar di volunteer ini.", "Sudah Terdaftar");
+      return;
+    }
+
+    if (registrationClosed) {
+      toast.error("Maaf, batas registrasi sudah lewat.", "Pendaftaran Ditutup");
+      return;
+    }
+
+    try {
+      setRegistering(true);
+      await registerToVolunteer(data.id);
+      toast.success(`Kamu berhasil terdaftar untuk ${data.title}`, "Berhasil");
+    } catch (err: any) {
+      // registerToVolunteer sudah meng-handle rollback & pesan error dasar,
+      // tapi kita tampilkan juga toast jika ada error tak terduga.
+      toast.error(err?.message ?? "Gagal mendaftar. Coba lagi nanti.", "Error");
+    } finally {
+      setRegistering(false);
+    }
+  };
+
   return (
     <section className="w-full">
-      <div className="relative mt-40 h-[600px] w-full overflow-hidden">
+      <div className="relative md:mt-40 h-[700px] md:h-[600px] w-full overflow-hidden">
         {/* Left image covers entire container; card will be positioned on top-right */}
         <Image
           src={imageSrc}
           alt={`image-${data.title}`}
           fill
-          className="object-cover absolute inset-0 z-0"
+          className="object-cover absolute inset-0 z-0 hidden md:block"
           sizes="(max-width: 1024px) 100vw, 50vw"
         />
+        <div className="relative block md:hidden rounded-xl w-[350px] h-40 mx-auto my-5 shadow-sm">
+          <Image
+            src={imageSrc}
+            alt={`image-${data.title}`}
+            fill
+            className="object-cover"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+          />
+        </div>
 
         {/* bottom gradient overlay for legibility */}
-        <div className="absolute bottom-0 left-0 right-0 h-[240px] bg-gradient-to-t from-white/90 to-transparent z-10 pointer-events-none" />
+        <div className="md:block hidden absolute bottom-0 left-0 right-0 h-[240px] bg-gradient-to-t from-white/90 to-transparent z-10 pointer-events-none" />
 
         {/* Card on right */}
-        <div className="md:fixed top-40 right-12 z-20 w-[420px] min-h-[380px] bg-white rounded-2xl shadow-xl p-6 flex flex-col">
+        <div className="mx-auto md:mx-0 md:fixed md:top-40 right-12 z-20 w-[360px] md:w-[420px] min-h-[380px] bg-white rounded-2xl shadow-xl p-6 flex flex-col">
           {/* Badge */}
           <div className="flex items-center justify-between">
             <div className="inline-flex items-center gap-2">
@@ -221,7 +291,7 @@ export default function VolunteerHero({ data }: { data: VolunteerItem }) {
 
             {/* batas registrasi row */}
             <div className="px-4 py-3 bg-slate-50 flex items-center gap-3 border-t border-slate-100">
-              <div className="flex items-center text-sm text-amber-700">
+              <div className="flex items-center text-sm text-amber-700 gap-2">
                 <IconAlert />
                 <span className="text-sm font-medium">Batas Registrasi:</span>
               </div>
@@ -235,9 +305,23 @@ export default function VolunteerHero({ data }: { data: VolunteerItem }) {
           <div className="mt-auto">
             <button
               type="button"
-              className="w-full py-3 rounded-lg bg-gradient-to-b from-green-100 to-green-50 border border-green-200 text-green-800 font-semibold shadow-sm hover:from-green-200 active:scale-[0.997] transition-transform"
+              onClick={handleRegisterClick}
+              disabled={registering || isRegistered || registrationClosed}
+              className={`w-full py-3 rounded-lg border font-semibold shadow-sm transition-transform active:scale-[0.997] ${
+                isRegistered
+                  ? "bg-slate-100 text-slate-700 cursor-not-allowed"
+                  : registrationClosed
+                  ? "bg-rose-50 text-rose-700 cursor-not-allowed"
+                  : "bg-gradient-to-b from-green-100 to-green-50 border-green-200 text-green-800 hover:from-green-200"
+              }`}
             >
-              Jadi Relawan
+              {isRegistered
+                ? "Sudah Terdaftar"
+                : registrationClosed
+                ? "Pendaftaran Ditutup"
+                : registering
+                ? "Mendaftar..."
+                : "Jadi Relawan"}
             </button>
           </div>
         </div>

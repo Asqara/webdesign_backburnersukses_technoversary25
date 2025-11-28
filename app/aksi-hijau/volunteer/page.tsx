@@ -46,7 +46,7 @@ export default function volunteer() {
   }, [items, currentPage]);
   return (
     <MainContainer>
-      <div className="flex flex-col mx-auto text-center gap-6 mt-10 lg:mt-40">
+      <div className="flex flex-col mx-auto text-center gap-6 mt-10 md  :mt-40">
         <h1 className="lg:text-5xl text-2xl font-bold">
           Rimba Kembali Volunteer
         </h1>

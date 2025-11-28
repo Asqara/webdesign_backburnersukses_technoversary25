@@ -34,8 +34,8 @@ function generateVolunteers(): VolunteerItem[] {
   const items: VolunteerItem[] = [];
 
   for (let i = 1; i <= 20; i++) {
-    const dateStart = makeDate(2025, 1, 2); // 2 Feb 2025
-    const dateEnd = makeDate(2025, 1, 4); // 4 Feb 2025
+    const dateStart = makeDate(2026, 2, 10); // 2 Feb 2025
+    const dateEnd = makeDate(2026, 2, 20); // 4 Feb 2025
 
     // batasRegistrasi: 7 hari sebelum dateStart
     const batasRegistrasi = new Date(

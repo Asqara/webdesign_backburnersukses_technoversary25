@@ -39,19 +39,13 @@ export async function generateMetadata({
   };
 }
 
-/* ---------- Page (App Router) ----------
-   params may be a Promise<{slug}> so await it safely here.
-   ---------- */
 export default async function BlogArticle({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  // unwrap params safely
   const { slug } = await params;
-
   const article = DUMMY_ARTICLES.find((a) => a.slug === slug) ?? null;
-
   if (!article) return notFound();
 
   const { title, readTime, author, heroImage, content, createdAt } = article;

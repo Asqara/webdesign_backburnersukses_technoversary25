@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useToggle } from "@/context/ToggleContext";
-import { img } from "framer-motion/client";
+import { useAuth } from "@/context/AuthContext";
 
 function IconHome({ className = "w-6 h-6" }: { className?: string }) {
   return (
@@ -207,8 +207,8 @@ export default function Navbar() {
   const aksiRef = useRef<HTMLLIElement | null>(null);
   const { openModal } = useToggle();
   const aksiTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const { user, loading } = useAuth();
 
-  // Close popups when clicking outside
   useEffect(() => {
     function handler(e: MouseEvent) {
       if (aksiRef.current && !aksiRef.current.contains(e.target as Node)) {
@@ -260,6 +260,7 @@ export default function Navbar() {
     }
     return pathname.startsWith(path);
   };
+  if (loading) return null;
 
   return (
     // NOTE:
@@ -305,16 +306,31 @@ export default function Navbar() {
 
         {/* right: join button */}
         <div>
-          <button
-            onClick={() => openModal("login")}
-            className="inline-flex items-center justify-center px-6 py-2 shadow-xl rounded-2xl text-base font-semibold bg-transparent"
-            style={{
-              background: "linear-gradient(180deg, #F7FFE9 0%, #DFF7B8 100%)",
-              color: "#2b6b2b",
-            }}
-          >
-            Join
-          </button>
+          {!user ? (
+            // BELUM LOGIN
+            <button
+              onClick={() => openModal("login")}
+              className="inline-flex items-center justify-center px-6 py-2 shadow-xl rounded-2xl text-base font-semibold"
+              style={{
+                background: "linear-gradient(180deg, #F7FFE9 0%, #DFF7B8 100%)",
+                color: "#2b6b2b",
+              }}
+            >
+              Join
+            </button>
+          ) : (
+            // SUDAH LOGIN
+            <Link
+              href="/profile"
+              className="inline-flex items-center justify-center px-6 py-2 shadow-xl rounded-2xl text-base font-semibold"
+              style={{
+                background: "linear-gradient(180deg, #E9FFF1 0%, #B8F7D1 100%)",
+                color: "#1f7a4a",
+              }}
+            >
+              Profile
+            </Link>
+          )}
         </div>
       </nav>
 

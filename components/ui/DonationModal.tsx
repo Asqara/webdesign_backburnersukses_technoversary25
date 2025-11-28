@@ -1,37 +1,73 @@
+"use client";
+
+import { useAuth } from "@/context/AuthContext";
+import { useToast } from "@/context/ToastProvider";
 import { useState } from "react";
 
-// Component Modal Donasi
 interface DonationModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
 export default function DonationModal({ isOpen, onClose }: DonationModalProps) {
+  const { user, profile } = useAuth(); // panggil hook di top-level
+  const toast = useToast();
+
   const [amount, setAmount] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
-  const [isLogin, setIsLogin] = useState(false);
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  // Jangan setState langsung di render. Ambil status login dari user/profile.
+  const isLoggedIn = Boolean(user);
 
   if (!isOpen) return null;
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    // validasi nominal & metode
     if (!amount || !paymentMethod) {
-      alert("Mohon lengkapi nominal dan metode pembayaran");
+      toast.error("Mohon lengkapi nominal dan metode pembayaran");
       return;
     }
 
-    if (!isLogin && (!name || !contact)) {
-      alert("Mohon lengkapi data Anda");
+    const nominal = Number(amount);
+    if (Number.isNaN(nominal) || nominal <= 0) {
+      toast.error("Masukkan nominal donasi yang valid");
       return;
     }
 
-    alert(
-      `Donasi berhasil!\nNominal: Rp${parseInt(amount).toLocaleString(
-        "id-ID"
-      )}\nMetode: ${paymentMethod}`
-    );
-    onClose();
+    // jika belum login, wajib isi nama + kontak
+    if (!isLoggedIn) {
+      if (!name || !contact) {
+        toast.error("Mohon lengkapi nama dan kontak untuk donasi tamu");
+        return;
+      }
+    }
+
+    try {
+      setLoading(true);
+      // panggil API / payment gateway di sini apabila ada
+      // contoh sementara: delay kecil
+      await new Promise((r) => setTimeout(r, 600));
+
+      // pesan sukses; untuk user logged in tampilkan nama dari profile, else pakai input
+      const donorName = isLoggedIn
+        ? profile?.username ?? user?.email?.split("@")[0] ?? "Pengguna"
+        : name ?? "Anonim";
+
+      toast.success(
+        `Donasi berhasil!\nNama: ${donorName}\nNominal: Rp${nominal.toLocaleString(
+          "id-ID"
+        )}\nMetode: ${paymentMethod}`
+      );
+
+      onClose();
+    } catch (err: any) {
+      toast.error(err?.message ?? "Gagal memproses donasi. Coba lagi.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -45,12 +81,13 @@ export default function DonationModal({ isOpen, onClose }: DonationModalProps) {
           <button
             onClick={onClose}
             className="text-gray-400 hover:text-gray-600 transition"
+            aria-label="Tutup"
           >
-            X
+            ✕
           </button>
         </div>
 
-        {/* Content */}
+        {/* Body */}
         <div className="p-6 space-y-4">
           {/* Nominal Donasi */}
           <div>
@@ -63,6 +100,8 @@ export default function DonationModal({ isOpen, onClose }: DonationModalProps) {
               </span>
               <input
                 type="number"
+                inputMode="numeric"
+                min={0}
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
                 placeholder="0"
@@ -94,18 +133,20 @@ export default function DonationModal({ isOpen, onClose }: DonationModalProps) {
             </div>
           </div>
 
-          {/* Login Toggle */}
-          <div className="pt-2">
-            <button
-              onClick={() => setIsLogin(!isLogin)}
-              className="text-sm text-gray-600 hover:text-gray-800"
-            >
-              {isLogin ? "Logout" : "Login"} atau lengkapi data di bawah ini
-            </button>
-          </div>
-
-          {/* Form Input */}
-          {!isLogin && (
+          {/* Jika sudah login: tampilkan username & email. Jika belum: tampilkan form nama + kontak */}
+          {isLoggedIn ? (
+            <div className="p-4 border rounded-lg bg-gray-50">
+              <div className="text-sm text-gray-600">Anda login sebagai:</div>
+              <div className="mt-2">
+                <div className="font-medium text-gray-800">
+                  {profile?.username ?? user?.email?.split("@")[0] ?? "User"}
+                </div>
+                <div className="text-sm text-gray-600">
+                  {profile?.email ?? user?.email}
+                </div>
+              </div>
+            </div>
+          ) : (
             <>
               <input
                 type="text"
@@ -123,6 +164,12 @@ export default function DonationModal({ isOpen, onClose }: DonationModalProps) {
               />
             </>
           )}
+
+          <div className="text-xs text-gray-500">
+            {isLoggedIn
+              ? "Donasi akan tercatat pada akun Anda."
+              : "Donasi anonim — data hanya digunakan untuk konfirmasi pembayaran."}
+          </div>
         </div>
 
         {/* Footer */}
@@ -130,14 +177,15 @@ export default function DonationModal({ isOpen, onClose }: DonationModalProps) {
           <div>
             <p className="text-sm text-gray-500">Total Donasi</p>
             <p className="text-2xl font-bold text-gray-800">
-              Rp{amount ? parseInt(amount).toLocaleString("id-ID") : "0"}
+              Rp{amount ? Number(amount).toLocaleString("id-ID") : "0"}
             </p>
           </div>
           <button
             onClick={handleSubmit}
-            className="px-8 py-3 bg-[linear-gradient(140deg,#FFF_1.03%,#CDF4AE_93.17%)] text-primary-500 font-semibold rounded-full transition"
+            disabled={loading}
+            className="px-8 py-3 bg-[linear-gradient(140deg,#FFF_1.03%,#CDF4AE_93.17%)] text-primary-500 font-semibold rounded-full transition disabled:opacity-60"
           >
-            Bayar
+            {loading ? "Memproses..." : "Bayar"}
           </button>
         </div>
       </div>
