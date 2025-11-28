@@ -45,6 +45,11 @@ export default function Footer({
     { label: "Terms Of Use", href: "/legal" },
     { label: "Privacy Policy", href: "/legal" },
   ];
+  const openExternal = (url: string) => {
+    if (typeof window !== "undefined") {
+      window.open(url, "_blank", "noopener,noreferrer");
+    }
+  };
 
   return (
     <footer className={`${bgClass} pb-30 pt-10 md:py-10`}>
@@ -67,13 +72,11 @@ export default function Footer({
               )}
             </div>
 
-            {/* icons row */}
             <div className="flex gap-3 items-center">
-              {/* envelope */}
-              <a
-                href="https://mail.google.com"
+              <button
+                onClick={() => openExternal("https://mail.google.com")}
                 aria-label="Email"
-                className={`p-2 rounded-md ${iconClass} hover:opacity-90`}
+                className={`p-3 rounded-md ${iconClass} hover:opacity-90`}
               >
                 <Image
                   src="/images/icons/email.svg"
@@ -81,13 +84,12 @@ export default function Footer({
                   width={40}
                   height={40}
                 />
-              </a>
+              </button>
 
-              {/* instagram */}
-              <a
-                href="https://www.instagram.com"
+              <button
+                onClick={() => openExternal("https://www.instagram.com")}
                 aria-label="Instagram"
-                className={`p-2 rounded-md ${iconClass} hover:opacity-90`}
+                className={`p-3 rounded-md ${iconClass} hover:opacity-90`}
               >
                 <Image
                   src="/images/icons/instagram.svg"
@@ -95,21 +97,20 @@ export default function Footer({
                   width={30}
                   height={30}
                 />
-              </a>
+              </button>
 
-              {/* youtube */}
-              <a
-                href="https://www.youtube.com"
+              <button
+                onClick={() => openExternal("https://www.youtube.com")}
                 aria-label="YouTube"
-                className={`p-2 rounded-md ${iconClass} hover:opacity-90`}
+                className={`p-3 rounded-md ${iconClass} hover:opacity-90`}
               >
                 <Image
                   src="/images/icons/youtube.svg"
-                  alt="Youtube Logo"
+                  alt="YouTube Logo"
                   width={40}
                   height={60}
                 />
-              </a>
+              </button>
             </div>
 
             <div className="text-xs text-gray-600 text-center md:text-left">

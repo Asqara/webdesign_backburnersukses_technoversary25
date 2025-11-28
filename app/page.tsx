@@ -126,7 +126,7 @@ export default function Home() {
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.32, duration: 0.8, ease: smoothEasing }}
           >
-            <ButtonNavigation text="Read More" href="/aksi" />
+            <ButtonNavigation text="Read More" href="/kegiatan" />
           </motion.div>
         </div>
 
@@ -191,7 +191,7 @@ export default function Home() {
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.32, duration: 0.8, ease: smoothEasing }}
           >
-            <ButtonNavigation text="Read More" href="/aksi-hijau" />
+            <ButtonNavigation text="Read More" href="/kegiatan" />
           </motion.div>
         </div>
       </div>

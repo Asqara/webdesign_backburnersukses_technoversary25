@@ -13,7 +13,7 @@ export default function donasi() {
         title: `Save The Forest ${i}`,
         description:
           "Bantu pelestarian hutan dan pemulihan area hijau yang rusak.",
-        imageUrl: `/images/donation/Save The Forest ${i}.png`,
+        imageUrl: `/images/donation/${i}.png`,
         goal: 20000000 + (i % 5) * 5000000, // vary goal a bit
         collected: 4000000 * ((i % 5) + 1), // vary collected to show different progress
       });

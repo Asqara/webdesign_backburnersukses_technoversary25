@@ -366,33 +366,35 @@ export default function Navbar() {
 
         {/* Mobile aksi popup (chat-like) */}
         <div
-          className={`fixed inset-0 z-40 flex items-end justify-center transition-opacity duration-300 ${
+          onClick={() => setAksiOpen(false)}
+          className={`fixed inset-0 z-40 flex items-start justify-center transition-opacity duration-300 ${
             aksiOpen
               ? "opacity-100 pointer-events-auto"
               : "opacity-0 pointer-events-none"
           }`}
           aria-hidden={!aksiOpen}
         >
-          {/* overlay background (semi-transparent) */}
           <button
             type="button"
             aria-hidden
             onClick={() => setAksiOpen(false)}
-            className={`absolute inset-0 bg-black/40 transition-opacity z-0 pointer-events-none ${
-              aksiOpen ? "opacity-100" : "opacity-0"
+            className={`absolute inset-0 bg-black/40 transition-opacity ${
+              aksiOpen
+                ? "opacity-100 pointer-events-auto"
+                : "opacity-0 pointer-events-none"
             }`}
           />
 
           <div
-            className={`relative w-full max-w-sm mx-4 mb-24 bg-white rounded-2xl shadow-2xl border border-gray-200 transform transition-all duration-300 z-50${
+            className={`relative w-full max-w-sm mx-4 mb-24 bg-white rounded-2xl shadow-2xl border border-gray-200 transform transition-all duration-300 z-50 ${
               aksiOpen
-                ? "translate-y-0 scale-100 opacity-100"
-                : "translate-y-6 scale-95 opacity-0"
+                ? "translate-y-0 scale-100 opacity-100 pointer-events-auto"
+                : "translate-y-6 scale-95 opacity-0 pointer-events-none"
             }`}
             role="dialog"
             aria-modal="true"
           >
-            <div className="p-4">
+            <div onClick={(e) => e.stopPropagation()} className="p-4">
               {/* Header */}
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
@@ -624,7 +626,11 @@ function MobileNavItem({
     return (
       <li className="flex-1 flex justify-center">
         <button
-          onClick={onAksiClick}
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation(); // mencegah event naik ke parent
+            onAksiClick?.();
+          }}
           className={`flex flex-col items-center text-xs transition-all duration-200 ${
             active ? "text-primary-500 font-semibold" : "text-gray-600"
           }`}
