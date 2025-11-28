@@ -65,8 +65,8 @@ export default function volunteer() {
           <div className="absolute inset-0 bg-primary-500/80 z-10 rounded-t-4xl"></div>
           <div className="absolute inset-0 flex items-center justify-center z-20">
             <Image
-              src="/images/donasi-icon.svg"
-              alt="donasi"
+              src="/images/volunteer-icon.svg"
+              alt="Volunteer Icon"
               width={150}
               height={150}
             />
