@@ -38,16 +38,6 @@ export default function HelpRimbaKembali() {
               terbaru. Semangat berbagi di aksi berikutnya!
             </p>
           </div>
-
-          {/* BLOМММММ */}
-          <div className="mb-4">
-            <h3 className="text-base font-bold mb-2">2. BLOММММММ</h3>
-            <p className="text-sm text-justify leading-relaxed">
-              Kunjungi halaman Volunteer lalu isi data dasoar. Kamu akan
-              terhubung ke grup informasi kegiatan dan menerima jadwal aksi
-              terbaru. Semua orang jari berbagai later belakang bisa ikut serta.
-            </p>
-          </div>
         </div>
 
         {/* Security FAQs Section */}
