@@ -242,7 +242,7 @@ export default function VolunteerHero({ data }: { data: VolunteerItem }) {
         <div className="md:block hidden absolute bottom-0 left-0 right-0 h-[240px] bg-gradient-to-t from-primary-500/90 to-transparent z-10 pointer-events-none" />
 
         {/* Card on right */}
-        <div className="mx-auto md:mx-0 md:fixed md:top-40 right-12 z-20 w-[360px] md:w-[420px] min-h-[380px] bg-white rounded-2xl shadow-xl p-6 flex flex-col">
+        <div className="mx-auto md:mx-0 md:fixed md:top-30 right-12 z-20 w-[360px] md:w-[420px] min-h-[380px] bg-white rounded-2xl shadow-xl p-6 flex flex-col">
           {/* Badge */}
           <div className="flex items-center justify-between">
             <div className="inline-flex items-center gap-2">
