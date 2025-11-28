@@ -1,36 +1,102 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌿 Rimba Kembali
 
-## Getting Started
+## 👥 Nama Anggota & Asal Instansi
+| No | Nama Lengkap | Asal Instansi |
+|----|-------------|---------------|
+| 1  | Alfath Asqar Tsani | IPB University |
+| 2  | Nailah Afia Tsabita | IPB University |
 
-First, run the development server:
+---
 
+## 🌱 Judul Website
+**Rimba Kembali – Platform Kampanye dan Edukasi Lingkungan**
+
+---
+
+## 📝 Deskripsi Website
+**Rimba Kembali** adalah website berbasis **Next.js** yang bertujuan untuk menyajikan informasi, kampanye, dan aktivitas terkait pelestarian lingkungan dan reboisasi hutan.  
+Website ini menghadirkan tampilan modern, interaktif, serta responsif dengan dukungan animasi menggunakan **Framer Motion** dan styling menggunakan **Tailwind CSS**.
+
+Website ini dikembangkan sebagai bagian dari:
+- Media kampanye lingkungan  
+- Sarana edukasi publik  
+- Portofolio pengembangan website modern  
+
+---
+
+## ⚙️ Teknologi yang Digunakan
+- **Next.js 16**
+- **React 19**
+- **TypeScript**
+- **Tailwind CSS v4**
+- **Framer Motion**
+- **ESLint**
+
+---
+
+## 🚀 Cara Instalasi & Menjalankan Project
+
+### 1️⃣ Prasyarat
+Pastikan perangkat Anda telah terinstall:
+- **Node.js** versi **18.x** atau **20.x**
+- **npm** (bawaan Node.js)
+- **Git**
+
+Cek versi Node:
+```bash
+node -v
+npm -v
+```
+2️⃣ Clone Repository
+bash
+Copy code
+```bash
+git clone https://github.com/username/rimba-kembali.git
+```
+cd rimba-kembali
+Ganti username dengan username GitHub Anda.
+
+3️⃣ Install Dependencies
+Copy code
+```bash
+npm install
+```
+4️⃣ Menjalankan Project (Development Mode)
+bash
+Copy code
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+Akses di browser:
+Copy code
+```bash
+http://localhost:3000
+```
+5️⃣ Build untuk Production
+Copy code
+```bash
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+📁 Struktur Script penting
+json
+Copy code
+"scripts": {
+  "dev": "next dev",
+  "build": "next build",
+  "start": "next start",
+  "lint": "eslint"
+}
+🔗 Link Hosting / Demo (Opsional)
+🌐 Website: 
+```bash
+https://rimba-kembali.vercel.app
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+📦 Repository GitHub: https://github.com/username/rimba-kembali
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Jika belum tersedia, bagian ini dapat dikosongkan.
+Disarankan untuk menggunakan Vercel untuk deployment Next.js.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+© 2025 — Rimba Kembali.
+Dikembangkan untuk edukasi dan kampanye pelestarian lingkungan 🌏🌿
