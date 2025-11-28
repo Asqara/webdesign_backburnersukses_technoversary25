@@ -87,11 +87,9 @@ Copy code
   "start": "next start",
   "lint": "eslint"
 }
+
 🔗 Link Hosting / Demo (Opsional)
-🌐 Website: 
-```bash
-https://rimba-kembali.vercel.app
-```
+🌐 Website: https://rimba-kembali.vercel.app
 
 📦 Repository GitHub: https://github.com/username/rimba-kembali
 
