@@ -29,7 +29,7 @@ const SmallBlogCard = ({ post }: { post: ArticleData }) => {
           <div className="w-full h-full rounded-xl overflow-hidden">
             {imageExists ? (
               <Image
-                src={post.heroImage as string}
+                src={`/images/article-heroImage/${post.slug}.png`}
                 alt={post.title}
                 width={1200}
                 height={800}
@@ -56,9 +56,7 @@ const SmallBlogCard = ({ post }: { post: ArticleData }) => {
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 rounded-full flex items-center justify-center bg-gray-100">
                 <img
-                  src={
-                    post.author.avatar ?? "/images/authors/default-avatar.png"
-                  }
+                  src={`/images/icons/default-user.svg`}
                   alt=""
                   className="w-6 h-6 rounded-full object-cover"
                 />

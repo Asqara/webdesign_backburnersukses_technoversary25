@@ -8,6 +8,7 @@ import type { ArticleData } from "@/types/blog";
 import { DUMMY_ARTICLES } from "@/data/dummyBlog";
 import dynamic from "next/dynamic";
 import StackedCards from "../ui/StackedCard";
+import BlogCard from "../ui/BlogCard";
 
 /* ---------- Skeleton ---------- */
 const BlogCardSkeleton = () => (
@@ -35,69 +36,6 @@ const BlogCardSkeleton = () => (
 );
 
 /* ---------- Card ---------- */
-const BlogCard = ({ post }: { post: ArticleData }) => {
-  const imageExists = !!post.heroImage;
-
-  return (
-    <Link
-      href={`/blog/${post.slug}`}
-      className="group focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-500 rounded-2xl"
-      aria-label={`Buka artikel ${post.title}`}
-      prefetch={false}
-    >
-      <article className="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100 cursor-pointer h-full flex flex-col">
-        <div className="h-80 mx-auto overflow-hidden p-4">
-          <div className="w-full h-full rounded-xl overflow-hidden">
-            {imageExists ? (
-              <Image
-                src={post.heroImage as string}
-                alt={post.title} // only show alt when there is an image
-                width={1200}
-                height={800}
-                className="w-full h-full object-cover rounded-xl"
-                sizes="(max-width: 1024px) 100vw, 33vw"
-                priority={false}
-              />
-            ) : (
-              // gradient placeholder (no visible alt text)
-              <div
-                role="img"
-                aria-hidden="true"
-                className="w-full h-full rounded-xl bg-gradient-to-br from-primary-500 to-primary-200"
-              />
-            )}
-          </div>
-        </div>
-
-        <div className="p-5 flex-1 flex flex-col">
-          <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-primary-600 transition-colors">
-            {post.title}
-          </h3>
-
-          <div className="mt-auto flex items-center gap-4 text-sm text-gray-600">
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-full flex items-center justify-center bg-gray-100">
-                {/* small avatar fallback */}
-                <img
-                  src={
-                    post.author.avatar ?? "/images/authors/default-avatar.png"
-                  }
-                  alt=""
-                  className="w-6 h-6 rounded-full object-cover"
-                />
-              </div>
-              <span className="font-medium">{post.author.name}</span>
-            </div>
-
-            <div className="flex items-center gap-1.5 ml-auto">
-              <span className="text-xs text-gray-400">{post.readTime}</span>
-            </div>
-          </div>
-        </div>
-      </article>
-    </Link>
-  );
-};
 
 /* ---------- Main Component ---------- */
 const StackedCardsNoSSR = dynamic(() => import("../ui/StackedCard"), {

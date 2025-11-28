@@ -71,7 +71,7 @@ export default function Footer({
             <div className="flex gap-3 items-center">
               {/* envelope */}
               <a
-                href="#"
+                href="https://mail.google.com"
                 aria-label="Email"
                 className={`p-2 rounded-md ${iconClass} hover:opacity-90`}
               >
@@ -85,7 +85,7 @@ export default function Footer({
 
               {/* instagram */}
               <a
-                href="#"
+                href="https://www.instagram.com"
                 aria-label="Instagram"
                 className={`p-2 rounded-md ${iconClass} hover:opacity-90`}
               >
@@ -99,7 +99,7 @@ export default function Footer({
 
               {/* youtube */}
               <a
-                href="#"
+                href="https://www.youtube.com"
                 aria-label="YouTube"
                 className={`p-2 rounded-md ${iconClass} hover:opacity-90`}
               >

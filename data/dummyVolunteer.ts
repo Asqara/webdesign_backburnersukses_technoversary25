@@ -33,7 +33,7 @@ function makeDate(year: number, monthZeroBased: number, day: number) {
 function generateVolunteers(): VolunteerItem[] {
   const items: VolunteerItem[] = [];
 
-  for (let i = 1; i <= 20; i++) {
+  for (let i = 21; i <= 30; i++) {
     const dateStart = makeDate(2026, 2, 10); // 2 Feb 2025
     const dateEnd = makeDate(2026, 2, 20); // 4 Feb 2025
 
@@ -47,7 +47,7 @@ function generateVolunteers(): VolunteerItem[] {
       title: `Rimba Kembali Batch #${i}`,
       description:
         "Bantu pelestarian hutan dan pemulihan area hijau yang rusak.",
-      imageUrl: "/mnt/data/Frame 48.png", // sesuaikan path kalau mau pindah ke /public/images/...
+      imageUrl: `/images/volunteers/rimba-batch-${i}.jpg`, // sesuaikan path kalau mau pindah ke /public/images/...
       dateStart,
       dateEnd,
       location: `Babakan ke-${i}`,

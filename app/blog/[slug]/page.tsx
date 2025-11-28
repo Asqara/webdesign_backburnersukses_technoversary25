@@ -34,7 +34,7 @@ export async function generateMetadata({
     openGraph: {
       title: article.title,
       description: article.content?.intro?.slice(0, 160) ?? undefined,
-      images: article.heroImage ? [article.heroImage] : undefined,
+      images: `/images/article-heroImage/${slug}.png`,
     },
   };
 }
@@ -50,8 +50,8 @@ export default async function BlogArticle({
 
   const { title, readTime, author, heroImage, content, createdAt } = article;
 
-  const avatarSrc = author?.avatar ?? "/images/authors/default-avatar.png";
-  const heroSrc = heroImage ?? "/images/blog/default-hero.jpg";
+  const avatarSrc = "/images/icons/default-user.svg";
+  const heroSrc = `/images/article-heroImage/${slug}.png`;
 
   return (
     <MainContainer className="min-h-screen bg-white">
@@ -141,7 +141,7 @@ export default async function BlogArticle({
           <div className="my-8">
             <div className="relative w-full" style={{ height: 500 }}>
               <Image
-                src={content.image}
+                src={`/images/article-image/${article.slug}.png`}
                 alt={`${title} — image`}
                 fill
                 className="rounded-lg object-cover"

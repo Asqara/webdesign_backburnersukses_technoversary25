@@ -18,7 +18,7 @@ export function CardVolunteer({
   href,
 }: EventCardProps) {
   const CardVolunteer = (
-    <article className="w-80 h-96 bg-white rounded-2xl shadow-lg p-4 border border-transparent hover:shadow-xl transition-shadow duration-200">
+    <article className="w-80 h-86 bg-white rounded-2xl shadow-lg p-4 border border-transparent hover:shadow-xl transition-shadow duration-200">
       <div className="flex items-start justify-between gap-2">
         <h3 className="text-lg font-semibold leading-tight text-slate-900">
           {title}

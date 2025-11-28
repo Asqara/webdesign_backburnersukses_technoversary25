@@ -170,7 +170,7 @@ export default function ProfilePage(props: Props) {
         <section className="bg-white rounded-2xl p-6 shadow">
           <div className="flex flex-col items-center text-center">
             <div
-              className="w-40 h-40 rounded-lg overflow-hidden mb-4 border"
+              className="w-40 h-40 rounded-lg overflow-hidden mb-4"
               style={{ borderColor: "rgba(77,135,61,0.12)" }}
             >
               {/* anonymous svg avatar */}
@@ -259,7 +259,7 @@ export default function ProfilePage(props: Props) {
             Daftar volunteer yang kamu ikuti akan muncul di sini. Jika belum
             mendaftar, kunjungi halaman{" "}
             <Link
-              href="/volunteers"
+              href="/aksi-hijau/volunteer"
               className="font-semibold"
               style={{ color: "var(--color-primary-500)" }}
             >

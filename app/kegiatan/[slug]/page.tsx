@@ -36,7 +36,7 @@ export async function generateMetadata({
     openGraph: {
       title: activity.title,
       description: activity.excerpt,
-      images: activity.imageUrl ? [activity.imageUrl] : undefined,
+      images: `/images/activities-imageUrl/${slug}.png`,
       type: "article",
     },
   };
@@ -55,8 +55,8 @@ export default async function ActivityDetail({
 
   const { title, readTime, author, imageUrl, content, createdAt } = activity;
 
-  const avatarSrc = author?.avatar ?? "/images/authors/default-avatar.png";
-  const heroSrc = imageUrl ?? "/images/activities/default-hero.jpg";
+  const avatarSrc = "/images/icons/default-user.svg";
+  const heroSrc = `/images/activities-imageUrl/${slug}.png`;
 
   return (
     <MainContainer className="min-h-screen bg-white">
@@ -163,7 +163,7 @@ export default async function ActivityDetail({
           <div className="my-12">
             <div className="relative w-full h-96 rounded-2xl overflow-hidden">
               <Image
-                src={content.image}
+                src={`/images/activities-images/${slug}.png`}
                 alt={`${title} — dokumentasi kegiatan`}
                 fill
                 className="object-cover"

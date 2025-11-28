@@ -3,39 +3,9 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { DUMMY_ACTIVITIES } from "@/data/dummyActivities";
 
-const carouselData = [
-  {
-    id: 1,
-    title: "Kembali Mengabdi",
-    image: "/images/1.jpg",
-    href: "/kegiatan/kembali-mengabdi",
-  },
-  {
-    id: 2,
-    title: "Rimba Kembali Mengabdi #Batch 1",
-    image: "/images/2.jpg",
-    href: "/kegiatan/rimba-batch-1",
-  },
-  {
-    id: 3,
-    title: "Rimba Kembali Mengabdi #Batch 2",
-    image: "/images/1.jpg",
-    href: "/kegiatan/rimba-batch-2",
-  },
-  {
-    id: 4,
-    title: "Program Edukasi Lingkungan",
-    image: "/images/1.jpg",
-    href: "/kegiatan/edukasi-lingkungan",
-  },
-  {
-    id: 5,
-    title: "Penanaman Pohon Bersama",
-    image: "/images/1.jpg",
-    href: "/kegiatan/penanaman-pohon",
-  },
-];
+const carouselData = DUMMY_ACTIVITIES;
 
 export default function CarouselPreview() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -91,7 +61,7 @@ export default function CarouselPreview() {
 
   const handleItemClick = (href: string, position: number) => {
     if (position === 0) {
-      router.push(href);
+      router.push(`/kegiatan/${href}`);
     } else if (position === -1) {
       handlePrev();
     } else if (position === 1) {
@@ -244,7 +214,7 @@ export default function CarouselPreview() {
                         : "w-0 md:w-[25%] lg:w-[30%]"
                     }
                   `}
-                  onClick={() => handleItemClick(item.href, item.position)}
+                  onClick={() => handleItemClick(item.slug, item.position)}
                 >
                   <div className="relative group">
                     {/* Image Container */}
@@ -260,7 +230,7 @@ export default function CarouselPreview() {
                     `}
                     >
                       <Image
-                        src={item.image}
+                        src={`/images/activities-imageUrl/${item.slug}.png`}
                         alt={item.title}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -269,7 +239,7 @@ export default function CarouselPreview() {
                       />
 
                       {/* Overlay gradient */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-primary-500/80 via-primary-300/30 to-transparent" />
 
                       {/* Content */}
                       <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 lg:p-8">

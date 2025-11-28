@@ -27,10 +27,10 @@ function IconHome({ className = "w-6 h-6" }: { className?: string }) {
           y2="22.1619"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0.0337487" stop-color="#78D160" />
-          <stop offset="0.290476" stop-color="#508243" />
-          <stop offset="0.662677" stop-color="#305426" />
-          <stop offset="1" stop-color="#13210F" />
+          <stop offset="0.0337487" stopColor="#78D160" />
+          <stop offset="0.290476" stopColor="#508243" />
+          <stop offset="0.662677" stopColor="#305426" />
+          <stop offset="1" stopColor="#13210F" />
         </linearGradient>
       </defs>
     </svg>
@@ -46,8 +46,8 @@ function IconUser({ className = "w-6 h-6" }: { className?: string }) {
       fill="none"
     >
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M8 7C8 5.93913 8.42143 4.92172 9.17157 4.17157C9.92172 3.42143 10.9391 3 12 3C13.0609 3 14.0783 3.42143 14.8284 4.17157C15.5786 4.92172 16 5.93913 16 7C16 8.06087 15.5786 9.07828 14.8284 9.82843C14.0783 10.5786 13.0609 11 12 11C10.9391 11 9.92172 10.5786 9.17157 9.82843C8.42143 9.07828 8 8.06087 8 7ZM8 13C6.67392 13 5.40215 13.5268 4.46447 14.4645C3.52678 15.4021 3 16.6739 3 18C3 18.7956 3.31607 19.5587 3.87868 20.1213C4.44129 20.6839 5.20435 21 6 21H18C18.7956 21 19.5587 20.6839 20.1213 20.1213C20.6839 19.5587 21 18.7956 21 18C21 16.6739 20.4732 15.4021 19.5355 14.4645C18.5979 13.5268 17.3261 13 16 13H8Z"
         fill="url(#paint0_linear_390_941)"
       />
@@ -60,10 +60,10 @@ function IconUser({ className = "w-6 h-6" }: { className?: string }) {
           y2="23.7317"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0.0337487" stop-color="#78D160" />
-          <stop offset="0.290476" stop-color="#508243" />
-          <stop offset="0.662677" stop-color="#305426" />
-          <stop offset="1" stop-color="#13210F" />
+          <stop offset="0.0337487" stopColor="#78D160" />
+          <stop offset="0.290476" stopColor="#508243" />
+          <stop offset="0.662677" stopColor="#305426" />
+          <stop offset="1" stopColor="#13210F" />
         </linearGradient>
       </defs>
     </svg>
@@ -91,10 +91,10 @@ function IconKegiatan({ className = "w-6 h-6" }: { className?: string }) {
           y2="24.9139"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0.0337487" stop-color="#78D160" />
-          <stop offset="0.290476" stop-color="#508243" />
-          <stop offset="0.662677" stop-color="#305426" />
-          <stop offset="1" stop-color="#13210F" />
+          <stop offset="0.0337487" stopColor="#78D160" />
+          <stop offset="0.290476" stopColor="#508243" />
+          <stop offset="0.662677" stopColor="#305426" />
+          <stop offset="1" stopColor="#13210F" />
         </linearGradient>
       </defs>
     </svg>
@@ -122,10 +122,10 @@ function IconBlog({ className = "w-6 h-6" }: { className?: string }) {
           y2="23.7317"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0.0337487" stop-color="#78D160" />
-          <stop offset="0.290476" stop-color="#508243" />
-          <stop offset="0.662677" stop-color="#305426" />
-          <stop offset="1" stop-color="#13210F" />
+          <stop offset="0.0337487" stopColor="#78D160" />
+          <stop offset="0.290476" stopColor="#508243" />
+          <stop offset="0.662677" stopColor="#305426" />
+          <stop offset="1" stopColor="#13210F" />
         </linearGradient>
       </defs>
     </svg>
@@ -154,10 +154,10 @@ function IconAksi({ className = "w-6 h-6" }: { className?: string }) {
           y2="22.148"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0.0337487" stop-color="#78D160" />
-          <stop offset="0.290476" stop-color="#508243" />
-          <stop offset="0.662677" stop-color="#305426" />
-          <stop offset="1" stop-color="#13210F" />
+          <stop offset="0.0337487" stopColor="#78D160" />
+          <stop offset="0.290476" stopColor="#508243" />
+          <stop offset="0.662677" stopColor="#305426" />
+          <stop offset="1" stopColor="#13210F" />
         </linearGradient>
       </defs>
     </svg>
@@ -455,15 +455,6 @@ export default function Navbar() {
               </div>
 
               {/* View All Button */}
-              <div className="mt-4">
-                <Link
-                  href="/aksi-hijau"
-                  onClick={() => setAksiOpen(false)}
-                  className="block pointer-events-auto text-center text-sm font-semibold text-primary-500 border-2 border-primary-100 rounded-xl py-3 hover:bg-primary-50 transition-colors"
-                >
-                  Lihat Semua Aksi
-                </Link>
-              </div>
             </div>
           </div>
         </div>
@@ -581,13 +572,6 @@ function NavLink({
             </div>
 
             {/* View All Button */}
-            <div className="mt-4 pt-3 border-t border-gray-100">
-              <Link href="/aksi-hijau">
-                <div className="block text-center text-sm font-semibold text-primary-500 border-2 border-primary-100 rounded-xl py-2.5 hover:bg-primary-50 transition-colors">
-                  Lihat Semua Aksi
-                </div>
-              </Link>
-            </div>
           </div>
         </div>
       </li>

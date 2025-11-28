@@ -219,7 +219,7 @@ export default function VolunteerHero({ data }: { data: VolunteerItem }) {
 
   return (
     <section className="w-full">
-      <div className="relative md:mt-40 h-[700px] md:h-[600px] w-full overflow-hidden">
+      <div className="relative h-[700px] md:h-[600px] w-full overflow-hidden">
         {/* Left image covers entire container; card will be positioned on top-right */}
         <Image
           src={imageSrc}
@@ -239,7 +239,7 @@ export default function VolunteerHero({ data }: { data: VolunteerItem }) {
         </div>
 
         {/* bottom gradient overlay for legibility */}
-        <div className="md:block hidden absolute bottom-0 left-0 right-0 h-[240px] bg-gradient-to-t from-white/90 to-transparent z-10 pointer-events-none" />
+        <div className="md:block hidden absolute bottom-0 left-0 right-0 h-[240px] bg-gradient-to-t from-primary-500/90 to-transparent z-10 pointer-events-none" />
 
         {/* Card on right */}
         <div className="mx-auto md:mx-0 md:fixed md:top-40 right-12 z-20 w-[360px] md:w-[420px] min-h-[380px] bg-white rounded-2xl shadow-xl p-6 flex flex-col">

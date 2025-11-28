@@ -37,7 +37,7 @@ function BigActivityCard({ item }: { item: ActivityItem }) {
         {item.imageUrl ? (
           <div className="relative w-full h-48 md:h-64">
             <Image
-              src={item.imageUrl}
+              src={`/images/activities-imageUrl/${item.slug}.png`}
               alt={item.title}
               fill
               className="object-cover"
@@ -72,7 +72,7 @@ function BigActivityCard({ item }: { item: ActivityItem }) {
             <div className="w-8 h-8 rounded-full bg-slate-200 overflow-hidden">
               {item.author.avatar ? (
                 <Image
-                  src={item.author.avatar}
+                  src={`/images/icons/default-user.svg`}
                   alt={item.author.name}
                   width={32}
                   height={32}
@@ -117,7 +117,7 @@ function SmallActivityCard({ item }: { item: ActivityItem }) {
         {item.imageUrl ? (
           <div className="relative w-full h-full">
             <Image
-              src={item.imageUrl}
+              src={`/images/activities-imageUrl/${item.slug}.png`}
               alt={item.title}
               fill
               className="object-cover"
@@ -153,7 +153,7 @@ function SmallActivityCard({ item }: { item: ActivityItem }) {
             <div className="w-6 h-6 rounded-full bg-slate-200 overflow-hidden">
               {item.author.avatar ? (
                 <Image
-                  src={item.author.avatar}
+                  src={`/images/icons/default-user.svg`}
                   alt={item.author.name}
                   width={24}
                   height={24}
